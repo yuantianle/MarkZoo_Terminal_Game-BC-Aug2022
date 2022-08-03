@@ -89,4 +89,5 @@ double Zoo::CalcFoodCost() {
 	{
 		sum += m_roster[i]->CalcFoodCost();
 	}
+	return sum;
 }

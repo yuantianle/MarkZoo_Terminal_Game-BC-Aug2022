@@ -12,9 +12,10 @@
 class MeerKat: public Animal
 {
 public:
-	using Animal::Animal; //Inherited constructors
-	MeerKat() {};
-	~MeerKat() {};
+	using Animal::Animal; /*Inherited constructors*/
+	MeerKat() {}
+	MeerKat(int age) :Animal(age) { m_type = 3; }
+	~MeerKat() {}
 
 public:
 	static int m_num_babies;
@@ -23,8 +24,8 @@ public:
 	static double m_food_multiplier;
 
 public:
-	double CalcFoodCost();
-	double CalcRevenue();
-	double CalcVetFee();
+	double CalcFoodCost() { return 0.0; }
+	double CalcRevenue() { return 0.0; }
+	double CalcVetFee() { return 0.0; }
 };
 
