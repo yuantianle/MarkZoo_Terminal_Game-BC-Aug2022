@@ -107,6 +107,7 @@ void FormatFunction(int n, bool a);
 void FormatFunction2(int n);
 void FormatFunction3(int n);
 void ArrowFunction();
+void Title();
 
 /*********************************************************************
 ** Function: Main function
@@ -117,6 +118,7 @@ void ArrowFunction();
 *********************************************************************/
 int main()
 {
+    Title();
     while (game_switch == 'Y' || game_switch == 'y')
     {
         DayCalculator();
@@ -137,7 +139,19 @@ int main()
         GGCondition();
         m_num_days += 7;
     }
+    cout << "\033[31m\033[0m";
     return 0;
+}
+
+void Title() {
+    cout << "\033[31m\033[8m" << endl;
+    std::cout << "=============================================================================================\n";
+    std::cout << "        / |   / |  | _\\\\    | ____\\  ||    //    /---------  ------------  ------------                " << endl;
+    std::cout << "       //||  //||  ||  \\\\   ||    \\\\ ||___//    /------- /    \\ ------- \\   \\ ------- \\            " << endl;
+    std::cout << "      // || // ||  ||___\\\\  ||____// ||---\\\\          / /      \\ \\     \\ \\   \\ \\     \\ \\       " << endl;
+    std::cout << "     //  ||//  ||  ||    \\\\ ||    \\\\ ||    \\\\        / /_______ \\ \\_____\\ \\   \\ \\_____\\ \\      " << endl;
+    std::cout << "    --   ---   --  --     ----    -----    ---      /_________/  \\ ________\\   \\_________\\        " << endl;
+    std::cout << "=============================================================================================";
 }
 
 /*********************************************************************
@@ -150,8 +164,10 @@ int main()
 void DayCalculator()
 {
     int num_week = m_num_days / 7;
-    std::cout << "************************* Today is the: " << m_num_days << "th day (the " << num_week << "th week)! *************************\n";
-    FormatFunction(1, true); std::cout << "Your account balance so far is: $" << m_zoo->m_bank_balance << ".\n";
+
+    cout << "\033[34m\033[1m" << endl;
+    std::cout << "\n*************************** Today is the: " << m_num_days << "th day (the " << num_week << "th week)! ***************************\n";
+    FormatFunction2(1); cout << "\033[33m\033[1m"; std::cout << "Your account balance so far is: $" << m_zoo->m_bank_balance << ".\n";
 }
 
 /*********************************************************************
@@ -382,13 +398,14 @@ void CalculateRevenue(){
 ** Pre-Conditions:
 ** Post-Conditions:
 *********************************************************************/
-void ProcessPurchase() {
-    FormatFunction3(1); std::cout << "Your total balance in your account is: $" << m_zoo->m_bank_balance << ".\n";
-    FormatFunction(3, false); std::cout << "Please choose the single species options below for your purchase this week:\n";
-    FormatFunction(1, false); std::cout << "======================================================================================\n";
-    FormatFunction(1, false); std::cout << "| Species |  1. Monkey   |  2. Sea otter  |  3. Meerkats  | 4.Don't purchase anything|\n";
-    FormatFunction(1, false); std::cout << "|  Price  |  $12,000.0   |    $4,000.0    |    $500.0     |           $0.0           |\n";
-    FormatFunction(1, false); std::cout << "======================================================================================\n";
+void ProcessPurchase() {    
+     FormatFunction3(1); std::cout << "Please choose the single species options below for your purchase this week:\n";
+     FormatFunction2(3); std::cout << "Your total balance in your account is: $" << m_zoo->m_bank_balance << ".\n";
+
+    FormatFunction(3, false); std::cout << "======================================================================================\n";
+    FormatFunction(3, false); std::cout << "| Species |  1. Monkey   |  2. Sea otter  |  3. Meerkats  | 4.Don't purchase anything|\n";
+    FormatFunction(3, false); std::cout << "|  Price  |  $12,000.0   |    $4,000.0    |    $500.0     |           $0.0           |\n";
+    FormatFunction(3, false); std::cout << "======================================================================================\n";
     int choise = -1;
     get_int(choise, "", "WARNNIG: Please press digit key for your choice: 1 / 2 / 3 / 4:\n");
     while (choise != 1 && choise != 2 && choise != 3 && choise != 4)
@@ -522,7 +539,10 @@ void get_int(int& d, std::string prompt, std::string fail)
             ss >> val1;
 
             if (!ss.eof()) {
-                FormatFunction(4, false); std::cout << fail;
+                FormatFunction(4, false);     
+                cout << "\033[31m\033[1m"; 
+                std::cout << fail;
+                cout << "\033[33m\033[1m";
                 continue;
             }
             else {
@@ -532,7 +552,10 @@ void get_int(int& d, std::string prompt, std::string fail)
         }
         else
         {
-            FormatFunction(4, false); std::cout << prompt;
+            FormatFunction(4, false); 
+            cout << "\033[31m\033[1m";
+            std::cout << prompt;
+            cout << "\033[33m\033[1m";
             FormatFunction(3, false); ArrowFunction();  std::cin >> str;
             std::istringstream ss(str);
             int val1;
@@ -605,7 +628,7 @@ void WeeklyReport() {
 ** Post-Conditions:
 *********************************************************************/
 void showbalance() {
-    FormatFunction(1, true); std::cout << "At the end of this week, your total balance in the bank is: $" << m_zoo->m_bank_balance << ".\n";
+    FormatFunction(1, true); std::cout << "At the end of this week, your total balance in the bank is: $" << m_zoo->m_bank_balance << ".";
 }
 
 /*********************************************************************
@@ -681,7 +704,8 @@ void showtable() {
         }
     }
     std::cout << "\n";
-    FormatFunction(1, false); std::cout << "Here is the check list of the animals in the zoo now:\n";
+    FormatFunction(1, true); std::cout << "Here is the check list of the animals in the zoo now:\n";
+    cout << "\033[33m\033[1m";
     FormatFunction(1, false); std::cout << "=====================================================\n";
     FormatFunction(1, false); std::cout << "|  Species  |   Monkey   |  Sea otter  |  Meerkats  |\n";
     FormatFunction(1, false); std::cout << "-----------------------------------------------------\n";
@@ -692,7 +716,7 @@ void showtable() {
     FormatFunction(1, false); std::cout << "-----------------------------------------------------\n";
     FormatFunction(1, false); std::cout << "| All number|                   " << m_zoo->m_num << "                   |\n"; 
     FormatFunction(1, false); std::cout << "=====================================================\n";
-
+    cout << "\033[36m\033[1m";
 }
 
 /*********************************************************************
@@ -706,6 +730,7 @@ void GGCondition() {
     if (m_zoo->m_bank_balance <= 0)
     {
         game_switch = 2;
+        cout << "\033[31m\033[1m";
         std::cout << "The game ends with the zoo going bankrup. GG >_< !\n";
     }
     else
@@ -726,7 +751,10 @@ void if_continue() {
     std::cin >> game_switch;
     std::cout << endl;
     if (game_switch != 'Y' && game_switch != 'y')
+    {
+        cout << "\033[31m\033[1m";
         std::cout << "You have quit the game. See you next time >_< ...";
+    }
 }
 
 /*********************************************************************
@@ -737,12 +765,14 @@ void if_continue() {
 ** Post-Conditions:
 *********************************************************************/
 void FormatFunction(int n, bool arrowon) {
+
     std::string s = "";
     for (int i = 0; i < n; i++)
     {
         s += "  ";
     }
-    if (arrowon) {
+    if (arrowon) { 
+        cout << "\033[36m\033[1m";
         std::cout << s << "|  " << endl;
         std::cout << s << "-->";
     }
@@ -757,7 +787,9 @@ void FormatFunction2(int n) {
     {
         s += "  ";
     }
+    cout << "\033[36m\033[1m";
     std::cout << s << "|  " << endl;
+    cout << "\033[33m\033[1m";
     std::cout << s << "~>";
 }
 void FormatFunction3(int n) {
@@ -768,9 +800,12 @@ void FormatFunction3(int n) {
         s += "  ";
         q += "==";
     }
+    cout << "\033[36m\033[1m";
     std::cout << s << "|  " << endl;
+    cout << "\033[32m\033[1m";
     std::cout << q << "==>";
 }
 void ArrowFunction() {
+    cout << "\033[33m\033[1m";
     std::cout << "=>";
 }
