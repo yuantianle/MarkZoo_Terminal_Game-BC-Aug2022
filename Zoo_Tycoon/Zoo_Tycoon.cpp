@@ -182,7 +182,7 @@ void DayCalculator()
 void RandomEvent() {
     srand((unsigned)time(NULL));
     int Max_event_num = 4;
-    int number = 1;//rand() % Max_event_num + 1;
+    int number = rand() % Max_event_num + 1;
     FormatFunction3(1); std::cout << "Random event #: " << number << " happens!\n";
     switch (number) {//number
     case 1:
