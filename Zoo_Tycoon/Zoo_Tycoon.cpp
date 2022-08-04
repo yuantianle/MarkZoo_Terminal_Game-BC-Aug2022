@@ -118,6 +118,7 @@ void Title();
 *********************************************************************/
 int main()
 {
+    setupConsole();
     Title();
     while (game_switch == 'Y' || game_switch == 'y')
     {
@@ -140,6 +141,7 @@ int main()
         m_num_days += 7;
     }
     cout << "\033[31m\033[0m";
+    restoreConsole();
     return 0;
 }
 

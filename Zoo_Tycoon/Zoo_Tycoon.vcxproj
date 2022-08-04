@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="ansi_escapes.cpp" />
     <ClCompile Include="MeerKat.cpp" />
     <ClCompile Include="Monkey.cpp" />
     <ClCompile Include="SeaOtter.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="ansi_escapes.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="MeerKat.h" />
     <ClInclude Include="Monkey.h" />

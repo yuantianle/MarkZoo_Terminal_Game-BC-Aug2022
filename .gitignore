@@ -1,4 +1,6 @@
-
 *.ipch
 Zoo_Tycoon/.vs/Zoo_Tycoon/v16
 Zoo_Tycoon/Debug
+Zoo_Tycoon/Release
+*.iobj
+Zoo_Tycoon/Release/Zoo_Tycoon.iobj
