@@ -182,7 +182,7 @@ void DayCalculator()
 void RandomEvent() {
     srand((unsigned)time(NULL));
     int Max_event_num = 4;
-    int number = rand() % Max_event_num + 1;
+    int number = 1;//rand() % Max_event_num + 1;
     FormatFunction3(1); std::cout << "Random event #: " << number << " happens!\n";
     switch (number) {//number
     case 1:
@@ -283,10 +283,17 @@ void event2() {
         srand((unsigned)time(NULL));
         int Max_event_num = m_zoo->m_num;
         int number = rand() % Max_event_num + 1;
-        while (m_zoo->m_roster[number - 1]->m_age < Zoo::m_adult_weeks)
+        int count = 0;
+        while (m_zoo->m_roster[number - 1]->m_age < Zoo::m_adult_weeks && count < 100)
         {
             srand((unsigned)time(NULL));
             int number = rand() % Max_event_num + 1;
+            count += 1;
+        }
+        if (count > 99)
+        {
+            FormatFunction(1, true); std::cout << "None of animals matches each other for Even2 this week.\n";
+            return;
         }
         int MAX_BIRTH_NUM = 10;
         srand((unsigned)time(NULL));
@@ -503,7 +510,7 @@ void purchase(int aniindex, int num) {
             m_zoo->m_num += 1;
             m_zoo->m_seao_num += 1;
         }
-        sum += Monkey::m_purchase_price * num;
+        sum += SeaOtter::m_purchase_price * num;
         break;
     case 3:
         for (int i = 0; i < num; i++)
@@ -513,7 +520,7 @@ void purchase(int aniindex, int num) {
             m_zoo->m_num += 1;
             m_zoo->m_meer_num += 1;
         }
-        sum += Monkey::m_purchase_price * num;
+        sum += MeerKat::m_purchase_price * num;
         break;
     }   
     FormatFunction3(1); std::cout << "The total animal purchase cost of this week is: $" << sum << ".\n";
